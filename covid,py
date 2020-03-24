@@ -1,0 +1,35 @@
+import requests
+from bs4 import BeautifulSoup
+import re
+
+# BeautifulSoup = BeautifulSoup()
+
+
+response = requests.get('https://www.covid19.go.id')
+
+soup = BeautifulSoup(str(response.text), 'html.parser')
+
+# print(soup.prettify())
+test = soup.find("span", "s1")
+
+# print(test)
+covid_table = test.findPrevious("div", "fusion-text")
+# print(covid_table)
+
+spans = covid_table.find_all("span")
+
+for span in spans:
+    print(span)
+
+
+
+
+
+
+
+# test = covid_table.find("span", "")
+# test2 = test.findNextSibling("span")
+# print(test)
+# print(test2)
+
+# print(covid_table(text=re.compile('Kematian')))
